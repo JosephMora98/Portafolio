@@ -277,7 +277,36 @@
 
 
 <script>
+    // Función para cargar los videos de YouTube al hacer clic
     function loadVideo(container, youtubeId) {
         container.innerHTML = `<iframe class="w-full h-full object-cover" src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&modestbranding=1&rel=0" title="Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
     }
+
+    // Lógica para los botones de filtro
+    const filterButtons = document.querySelectorAll('#filter-buttons button');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Actualizar estilos visuales de los botones
+            filterButtons.forEach(btn => {
+                btn.classList.remove('bg-accent', 'text-white');
+                btn.classList.add('bg-slate-900', 'text-slate-300', 'hover:bg-slate-800');
+            });
+            button.classList.remove('bg-slate-900', 'text-slate-300', 'hover:bg-slate-800');
+            button.classList.add('bg-accent', 'text-white');
+
+            // Filtrar las tarjetas
+            const filter = button.getAttribute('data-filter');
+
+            projectCards.forEach(card => {
+                const category = card.getAttribute('data-category') || '';
+                if (filter === 'all' || category.includes(filter)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
 </script>
