@@ -112,3 +112,10 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function loadVideo(container, youtubeId) {
+        container.innerHTML = `<iframe class="w-full h-full object-cover" src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&modestbranding=1&rel=0" title="Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    }
+</script>
